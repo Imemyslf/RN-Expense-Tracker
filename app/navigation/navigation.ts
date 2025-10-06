@@ -1,6 +1,6 @@
 export type RootStackScreen = {
   ExpensesOverview: undefined;
-  ManageExpenses: undefined;
+  ManageExpenses: { expenseId?: string };
 };
 
 export type RootTapScreen = {
