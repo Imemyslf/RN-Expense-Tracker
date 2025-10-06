@@ -1,5 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { ReactNode } from "react";
+import { KeyboardTypeOptions } from "react-native";
 
 export interface Expense {
   id: string;
@@ -46,7 +47,8 @@ export interface ButtonProps {
 
 export interface ExpensesContextType {
   expenses: Expense[];
-  addExpense: (expense: ExpenseItemProps) => void;
+  setExpense: (expense: Expense[]) => void;
+  addExpense: (expense: Expense) => void;
   deleteExpense: (id: string) => void;
   updateExpense: (
     id: string,
@@ -59,6 +61,39 @@ export interface ExpenseContextProviderProps {
 }
 
 export type ExpenseAction =
-  | { type: "ADD"; payload: ExpenseItemProps }
+  | { type: "ADD"; payload: Expense }
   | { type: "UPDATE"; payload: { id: string; data: ExpenseItemProps } }
-  | { type: "DELETE"; payload: string };
+  | { type: "DELETE"; payload: string }
+  | { type: "SET"; payload: Expense[] };
+
+export interface InputProps {
+  label: string;
+  invalid: boolean;
+  textInputConfig: {
+    keyboardType?: KeyboardTypeOptions;
+    onChangeText?: (text: string) => void;
+    placeholder?: string;
+    multiline?: boolean;
+    value?: string;
+  };
+  style?: object;
+}
+
+export interface ExpenseFormProps {
+  onCancle: () => void;
+  onConfirm: (data: ExpenseDataType) => void;
+  submitButtonLable: string;
+  defaultValues: Expense | undefined;
+}
+
+export interface ExpenseDataType {
+  amount: number;
+  description: string;
+  date: Date;
+}
+
+export interface InputValueTypes {
+  amount: { value: string; isValid: boolean };
+  date: { value: string; isValid: boolean };
+  description: { value: string; isValid: boolean };
+}

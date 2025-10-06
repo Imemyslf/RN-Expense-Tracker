@@ -6,4 +6,5 @@ export type RootStackScreen = {
 export type RootTapScreen = {
   AllExpenses: undefined;
   RecentExpenses: undefined;
+  Demo: undefined;
 };
